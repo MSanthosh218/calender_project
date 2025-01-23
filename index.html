@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="main.js"></script>
+    <main class="container">
+        <article class="calender">
+            <header>
+                <h3 id="curr-month">month</h3>
+                <h3 id="full-year">year</h3>
+            </header>
+            <section class="week">
+                <p>S</p>
+                <p>M</p>
+                <p>T</p>
+                <p>W</p>
+                <p>T</p>
+                <p>F</p>
+                <p>S</p>
+            </section>
+            <section class="days">
+                <p class="date"></p>
+                <p class="date"></p>
+                <p class="date"></p>
+                <p class="date">1</p>
+                <p class="date">2</p>
+                <p class="date">3</p>
+                <p class="date">4</p>
+                <p class="date">5</p>
+                <p class="date">6</p>
+                <p class="date">7</p>
+                <p class="date">8</p>
+            </section>
+        </article>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            const months=["jan","feb","mar","apr","may",
+            "june","july","August","sep","oct",
+            "nov" ,"dec"
+            ]
+            const totaldaysofweek=6
+            const today=new Date();
+            const pre = today.getDate()
+            const monthofyear=today.getMonth()
+            document.getElementById("curr-month").innerText=months[monthofyear];
+            document.getElementById("full-year").innerText=today.getFullYear();
+
+            const firstdayofmonth=new Date(today.getFullYear(),today.getMonth(),1).getDay();
+            console.log(firstdayofmonth);
+
+            const lastdayofmonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDay();
+            const lastdateofmonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDate();
+            console.log(lastdayofmonth);
+            console.log(lastdateofmonth);
+
+            let dayhtml="";
+            const daysElement=document.querySelector(".days")
+
+            for (index=0;index<firstdayofmonth;index++){
+                dayhtml+="<p class=\"date\">"+"</p>"
+
+            }
+            for(data=1;data<=lastdateofmonth;data++){
+                if (data == pre){
+                    dayhtml+="<p class=\"date todaydate\">"+data+"</p>"
+                }
+                dayhtml+="<p class=\"date\">"+data+"</p>"
+            }
+            for(ldate=lastdayofmonth;ldate<totaldaysofweek;ldate++){
+                dayhtml+="<p class=\"date\">"+"</p>"
+            }
+            console.log(dayhtml)
+            daysElement.innerHTML = dayhtml;
+
+
+            
+            })
+    </script>
+</body>
+</html>
