@@ -1,72 +1,84 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-.container{
+
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f4f4f9;
 }
-.calender{
+
+.calender {
     display: flex;
     flex-direction: column;
     width: 520px;
     height: 500px;
-    border: 1px solid black; 
-    padding: 16px;   
-    background-color: #ffffff; 
+    border: 1px solid black;
+    padding: 16px;
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+
 }
-.calender >header{
+
+.calender>header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #333;
 }
-.calender .week,.calender .days{
+
+.calender .week,
+.calender .days {
     display: flex;
     gap: 16px;
     justify-content: center;
     text-align: center;
-}.calender .week > p{
+}
+
+.calender .week>p {
     flex: 0 0 50px;
     font-weight: 800;
     color: #0077ff
 }
-.calender .days .date{
+
+.calender .days .date {
     flex: 0 0 50px;
-}.calender .days{
-    flex-wrap: wrap;
-}
-.calender .days .date:hover {
-  background-color: #0077ff; 
-  color: #fff; 
-  border-radius: 5%;
 }
 
-.todaydate{
+.calender .days {
+    flex-wrap: wrap;
+}
+
+.calender .days .date:hover {
+    background-color: #0077ff;
+    color: #fff;
+    border-radius: 5%;
+}
+
+.todaydate {
     background-color: aqua;
     border-radius: 5%;
-} 
-.todaydate:hover{
+}
+
+.todaydate:hover {
     background-color: rgb(26, 246, 246);
     border-radius: 5%;
 }
-#curr-month{
-  font-size: 2rem; 
-  color: #2c3e50; 
-  font-weight: bold;
-  margin: 0;
+
+#curr-month {
+    font-size: 2rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin: 0;
 }
-#full-year{
-    font-size: 1.2rem; 
-    color: #7f8c8d; 
+
+#full-year {
+    font-size: 1.2rem;
+    color: #7f8c8d;
     font-weight: 600;
     margin: 5%;
 }
-
-

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calender</title>
+    <title>Calendar</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <script src="main.js"></script>
     <main class="container">
         <article class="calender">
             <header>
@@ -24,63 +25,53 @@
                 <p>S</p>
             </section>
             <section class="days">
-                <p class="date"></p>
-                <p class="date"></p>
-                <p class="date"></p>
-                <p class="date">1</p>
-                <p class="date">2</p>
-                <p class="date">3</p>
-                <p class="date">4</p>
-                <p class="date">5</p>
-                <p class="date">6</p>
-                <p class="date">7</p>
-                <p class="date">8</p>
+                <!-- Calendar dates will be dynamically generated -->
             </section>
         </article>
     </main>
+
     <script>
-        document.addEventListener("DOMContentLoaded",function(){
-            const months=["jan","feb","mar","apr","may",
-            "june","july","August","sep","oct",
-            "nov" ,"dec"
-            ]
-            const totaldaysofweek=6
-            const today=new Date();
-            const pre = today.getDate()
-            const monthofyear=today.getMonth()
-            document.getElementById("curr-month").innerText=months[monthofyear];
-            document.getElementById("full-year").innerText=today.getFullYear();
+        document.addEventListener("DOMContentLoaded", function () {
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const totalDaysOfWeek = 7;
 
-            const firstdayofmonth=new Date(today.getFullYear(),today.getMonth(),1).getDay();
-            console.log(firstdayofmonth);
+            const today = new Date();
+            const currentDay = today.getDate();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
 
-            const lastdayofmonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDay();
-            const lastdateofmonth=new Date(today.getFullYear(),today.getMonth()+1,0).getDate();
-            console.log(lastdayofmonth);
-            console.log(lastdateofmonth);
+            document.getElementById("curr-month").innerText = months[currentMonth];
+            document.getElementById("full-year").innerText = currentYear;
 
-            let dayhtml="";
-            const daysElement=document.querySelector(".days")
+            const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+            const lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDay();
 
-            for (index=0;index<firstdayofmonth;index++){
-                dayhtml+="<p class=\"date\">"+"</p>"
+            let dayHTML = "";
+            const daysElement = document.querySelector(".days");
 
+            // Add empty slots before first day
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                dayHTML += `<p class="date"></p>`;
             }
-            for(data=1;data<=lastdateofmonth;data++){
-                if (data == pre){
-                    dayhtml+="<p class=\"date todaydate\">"+data+"</p>"
+
+            // Add dates
+            for (let d = 1; d <= lastDateOfMonth; d++) {
+                if (d === currentDay) {
+                    dayHTML += `<p class="date todaydate">${d}</p>`;
+                } else {
+                    dayHTML += `<p class="date">${d}</p>`;
                 }
-                dayhtml+="<p class=\"date\">"+data+"</p>"
             }
-            for(ldate=lastdayofmonth;ldate<totaldaysofweek;ldate++){
-                dayhtml+="<p class=\"date\">"+"</p>"
+
+            // Fill remaining slots in last row
+            for (let i = lastDayOfMonth + 1; i < totalDaysOfWeek; i++) {
+                dayHTML += `<p class="date"></p>`;
             }
-            console.log(dayhtml)
-            daysElement.innerHTML = dayhtml;
 
-
-            
-            })
+            daysElement.innerHTML = dayHTML;
+        });
     </script>
 </body>
+
 </html>
